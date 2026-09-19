@@ -1,0 +1,13 @@
+{
+  "name": "mafia-online",
+  "version": "1.0.0",
+  "description": "Online 8-player Mafia party game (1 Mafia, 1 Detective, 1 Doctor, 5 Civilians)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "socket.io": "^4.7.5"
+  }
+}

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mafia — Online</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="grain"></div>
+
+<header class="topbar">
+  <div class="brand">MAFIA <span>· online</span></div>
+  <div id="roomBadge" class="room-badge hidden">Room <span id="roomCodeLabel"></span></div>
+</header>
+
+<main id="app">
+
+  <!-- HOME SCREEN -->
+  <section id="screen-home" class="screen active">
+    <h1 class="hero-title">The city sleeps.<br>Someone in this room doesn't.</h1>
+    <p class="hero-sub">An 8-player game of suspicion, for 1 Mafia, 1 Detective, 1 Doctor, and 5 Civilians.</p>
+
+    <div class="card-row">
+      <div class="panel">
+        <h2>Start a room</h2>
+        <input id="createName" type="text" placeholder="Your name" maxlength="20" />
+        <button id="btnCreate" class="btn btn-primary">Create room</button>
+      </div>
+      <div class="panel">
+        <h2>Join a room</h2>
+        <input id="joinCode" type="text" placeholder="Room code" maxlength="4" style="text-transform:uppercase" />
+        <input id="joinName" type="text" placeholder="Your name" maxlength="20" />
+        <button id="btnJoin" class="btn btn-secondary">Join room</button>
+      </div>
+    </div>
+    <p id="homeError" class="error-text"></p>
+  </section>
+
+  <!-- LOBBY SCREEN -->
+  <section id="screen-lobby" class="screen">
+    <h2 class="section-title">Waiting room</h2>
+    <p class="muted">Share this code with the other players. The game needs exactly 8 people.</p>
+    <div class="code-display" id="lobbyCode">----</div>
+    <ul id="playerList" class="player-list"></ul>
+    <p id="lobbyStatus" class="muted"></p>
+    <button id="btnStart" class="btn btn-primary hidden">Start game</button>
+  </section>
+
+  <!-- ROLE REVEAL SCREEN -->
+  <section id="screen-role" class="screen">
+    <h2 class="section-title">Your identity tonight</h2>
+    <div id="roleCard" class="role-card">
+      <div class="role-name" id="roleName">—</div>
+      <div class="role-desc" id="roleDesc"></div>
+    </div>
+    <p class="muted">Keep this to yourself. The game begins shortly.</p>
+  </section>
+
+  <!-- NIGHT SCREEN -->
+  <section id="screen-night" class="screen">
+    <h2 class="section-title night-title">Night falls — Round <span id="nightRound"></span></h2>
+    <p id="nightInstruction" class="muted"></p>
+    <div id="nightActionArea"></div>
+    <p id="nightWaiting" class="muted hidden">Waiting on the others in the dark…</p>
+  </section>
+
+  <!-- DAY SCREEN -->
+  <section id="screen-day" class="screen">
+    <h2 class="section-title">Daybreak — Round <span id="dayRound"></span></h2>
+    <p id="dayNews" class="day-news"></p>
+
+    <div class="day-columns">
+      <div class="chat-panel">
+        <h3>Discussion</h3>
+        <div id="chatLog" class="chat-log"></div>
+        <div class="chat-input-row">
+          <input id="chatInput" type="text" placeholder="Say something…" maxlength="300" />
+          <button id="btnSend" class="btn btn-small">Send</button>
+        </div>
+      </div>
+      <div class="vote-panel">
+        <h3>Vote to eliminate</h3>
+        <ul id="voteList" class="vote-list"></ul>
+        <p id="voteStatus" class="muted"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- END SCREEN -->
+  <section id="screen-end" class="screen">
+    <h2 class="section-title" id="endTitle">Game over</h2>
+    <p id="endSub" class="muted"></p>
+    <ul id="endRoles" class="player-list"></ul>
+    <button id="btnReplay" class="btn btn-primary">Back to home</button>
+  </section>
+
+</main>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="client.js"></script>
+</body>
+</html>
